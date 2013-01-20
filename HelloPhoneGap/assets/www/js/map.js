@@ -1,26 +1,16 @@
-
-$(document).ready(function() {
-	mapPage.initialize();	
-}
-);
-
-
 var mapPage = {
+
+
 showMap : function() {
-
-
-
-           // geolocation
-           var options = {enableHighAccuracy: true,timeout:5000};
-           navigator.geolocation.getCurrentPosition(
-           		function(position) {
            		
            			console.log('updating location');
            			
+           			var coords = app.geoCoords;
+           			
            			$('#location').html(
-           					'Latitute: ' + position.coords.latitude + '<br />' +
-           					'Longitude: ' + position.coords.longitude + '<br/>' + 
-           					'Accuracy: ' + position.coords.accuracy + 'm <br/>');
+           					'Latitute: ' + coords.latitude + '<br />' +
+           					'Longitude: ' +coords.longitude + '<br/>' + 
+           					'Accuracy: ' + coords.accuracy + 'm <br/>');
            		
 					var mapProp = {
 						  center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
@@ -33,19 +23,7 @@ showMap : function() {
 					
 					console.log('updating map');
 					
-				},
-           		
-           		function(error) {
-           			$('#location').html('ERROR (' + error.code + '): ' + error.message);
-           		
-           		},
-           		
-           		options);		
 
-	},
-	
-	initialize: function() {
-	        document.addEventListener('deviceready', this.showMap, false);
-	
+
 	}
 };

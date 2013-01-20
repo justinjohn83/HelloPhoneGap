@@ -16,11 +16,40 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ 
+ 
+ $(document).ready(function() {
+ 
+ 	   app.initialize();
+ 	            
+});
+ 
 var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
     },
+    
+    getGeoPosition: function(callback) {
+
+          var options = {enableHighAccuracy: true,timeout:5000};
+           navigator.geolocation.getCurrentPosition(
+           		function(position) {
+           		
+           			app.geoCoords = position.coords;
+           		
+           		},
+           		
+           		function(error) {
+           			console.log('ERROR (' + error.code + '): ' + error.message);
+           		
+           		},
+           		
+           		options);		
+
+	},
+    
+    geoCoords: null,
     
     showInfo: function() {
             $('#props').html('Device Name: ' + device.name + '<br />' + 
@@ -73,15 +102,19 @@ var app = {
         
         app.showInfo();
         
+        
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+    
+    /*
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
+     */
 
         console.log('Received Event: ' + id);
     },

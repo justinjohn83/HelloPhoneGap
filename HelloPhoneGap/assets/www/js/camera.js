@@ -1,10 +1,4 @@
 
-$(document).ready(function() {
-	cameraPage.initialize();
-}
-);
-
-
 var cameraPage = {
 	takePicture: function() {
 	
@@ -17,11 +11,6 @@ var cameraPage = {
 		function onFail(message) {
 			alert("Failed because: " + message);
 		}
-	
-	},
-	
-	initialize: function() {
-	        document.addEventListener('deviceready', this.takePicture, false);
 	
 	}
 };

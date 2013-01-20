@@ -1,1 +1,8 @@
 jqMobi + backbone + handlebars + phonegap
+
+PhoneGap
+jqMobi
+jqMobi UI
+
+- add unminified versions of the css and js and then minify as part of the build process
+- Need to make a build.xml for build process that is also eclipse friendly
