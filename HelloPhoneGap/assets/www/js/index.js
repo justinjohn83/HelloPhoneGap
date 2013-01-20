@@ -30,7 +30,7 @@ var app = {
         this.bindEvents();
     },
     
-    getGeoPosition: function(callback) {
+    updateGeoPosition: function(callback) {
 
           var options = {enableHighAccuracy: true,timeout:5000};
            navigator.geolocation.getCurrentPosition(
@@ -100,6 +100,8 @@ var app = {
         document.addEventListener('online',app.onOnline,false);
         document.addEventListener('offline',app.onOffline,false);
         
+        // app init functions
+		app.updateGeoPosition();
         app.showInfo();
         
         

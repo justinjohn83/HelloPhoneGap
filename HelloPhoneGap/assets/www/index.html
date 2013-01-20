@@ -42,6 +42,7 @@
         <script type="text/javascript" src="js/lib/jq.ui.min.js"></script>
        
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/ui.js"></script>
         <script type="text/javascript" src="js/camera.js"></script>
         <script type="text/javascript" src="js/domain.js"></script>
         <script type="text/javascript" src="js/map.js"></script>
@@ -60,14 +61,13 @@
         	<!--  Top header -->
             <div id="header">
             	<a id="backButton" href="javascript:;" class="button" style="visibility: hidden; ">Back</a> 
-        		<h1 id="pageTitle">Phone Gap - JqMobi Demo</h1> 	        
 		    </div>
 		    
 		    <!--  content area where your page content lies -->
             <div id="content">
             
 	        	<!-- map screen -->
-	        	<div title='Map' id="mapPanel" class="panel" selected="false" data-load="mapPage.showMap" >
+	        	<div title='Map' id="mapPanel" class="panel" selected="false" data-load="loadedPanel" data-unload="unloadedPanel" >
 	        	
 	        		<div id="location">Location: Loading...</div>
     
@@ -76,13 +76,13 @@
             	</div>
 	        	
 	        	<!--  camera screen -->
-	        	<div title='Camera' id="cameraPanel" class="panel" selected="false" data-load="cameraPage.takePicture" >
+	        	<div title='Camera' id="cameraPanel" class="panel" selected="false" data-load="loadedPanel" data-unload="unloadedPanel" >
 	        	
 	        	    <img id="camera_image" width="300" height="400"></img>
 	        	</div>
 	        	
 	        	 <!--  main screen -->
-                <div title='Welcome' id="homePanel" class="panel" selected="true" >
+                <div title='Welcome' id="homePanel" class="panel" selected="true"  data-load="loadedPanel" data-unload="unloadedPanel">
 	            <div id="props">Loading...</div>		            
 	        	</div>
 	        

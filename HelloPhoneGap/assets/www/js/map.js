@@ -13,8 +13,8 @@ showMap : function() {
            					'Accuracy: ' + coords.accuracy + 'm <br/>');
            		
 					var mapProp = {
-						  center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
-						  zoom:8,
+						  center:new google.maps.LatLng(coords.latitude,coords.longitude),
+						  zoom:9,
 						  mapTypeId:google.maps.MapTypeId.ROADMAP
 						  };
 					
