@@ -37,15 +37,27 @@
         <!--  JQ UI Themes -->
         <link rel="stylesheet" type="text/css" href="css/jq.ui.carbon.css" />
         
+        <!--  Javascript libraries -->
+        
+        <!--  Google maps library -->
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.10&sensor=false"></script>
+        <!--  Phone Gap -->
         <script type="text/javascript" src="js/lib/cordova-2.2.0.js"></script>
+        
+        
+        <!--  JQ Mobi library and plugins -->
         <script type="text/javascript" src="js/lib/jq.mobi.min.js"></script>
         <script type="text/javascript" src="js/lib/jq.mvc.min.js"></script>
-         
         <script type="text/javascript" src="js/lib/jq.ui.min.js"></script>
+        <script type="text/javascript" src="js/lib/jq.template.js"></script>
        
+        
+
+       
+        <!--  Project Javascript resources -->
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/ui.js"></script>
+        <script type="text/javascript" src="js/home.js"></script>
         <script type="text/javascript" src="js/camera.js"></script>
         <script type="text/javascript" src="js/domain.js"></script>
         <script type="text/javascript" src="js/map.js"></script>
@@ -70,24 +82,19 @@
             <div id="content">
             
 	        	<!-- map screen -->
-	        	<div title='Map' id="mapPanel" class="panel" selected="false" data-load="loadedPanel" data-unload="unloadedPanel" >
-	        	
-	        		<div id="location">Location: Loading...</div>
-    
-                <div id="map_canvas" class="map rounded" style=
-            	"width:300px; height: 400px; position: relative; background-color: rgb(229, 227, 223); "></div>
-            	</div>
+	        	<div title='Map' id="mapPanel" class="panel" selected="false" data-load="loadedPanel" data-unload="unloadedPanel">
+	        		<div id="mapContent">Loading...</div>
+	        	</div>
 	        	
 	        	<!--  camera screen -->
 	        	<div title='Camera' id="cameraPanel" class="panel" selected="false" data-load="loadedPanel" data-unload="unloadedPanel" >
-	        	
-	        	    <img id="camera_image" width="300" height="400"></img>
+	        		<div id="cameraContent">Loading...</div>
 	        	</div>
 	        	
 	        	 <!--  main screen -->
                 <div title='Welcome' id="homePanel" class="panel" selected="true"  data-load="loadedPanel" data-unload="unloadedPanel">
-	            <div id="props">Loading...</div>		            
-	        	</div>
+                	<div id="homeContent">Loading...</div>
+                </div>
 	        
 	        <!--  end content area -->	
         	</div>

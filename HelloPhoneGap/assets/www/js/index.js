@@ -49,35 +49,8 @@ var app = {
 
 	},
     
-    geoCoords: null,
+    geoCoords: null, 		
     
-    showInfo: function() {
-            $('#props').html('Device Name: ' + device.name + '<br />' + 
-            				  'Device PhoneGap: ' + device.phonegap + '<br />' + 
-            				  'Device Platform: ' + device.platform + '<br/>' + 
-            				  'Device UUID: ' + device.uuid + '<br />' + 
-            				  'Device Version: ' + device.version + '<br />');
-           console.log('showInfo called');
-           
-           // camera works from here
-           /*
-              navigator.camera.getPicture(onSuccess, onFail, { quality: 50, allowEdit:true });
-	function onSuccess(imgData) {
-		var image = $('#camera_image');
-		
-		image.src = "data:image/jpeg;base64," + imgData;
-	}
-	function onFail(message) {
-		alert("Failed because: " + message);
-	}
-	*/
-           
-           
-
-           		
-
-    
-    },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -102,7 +75,8 @@ var app = {
         
         // app init functions
 		app.updateGeoPosition();
-        app.showInfo();
+		
+		console.log('Device ready');
         
         
     },
