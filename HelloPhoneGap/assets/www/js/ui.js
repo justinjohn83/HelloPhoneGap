@@ -4,7 +4,9 @@
 //This function will get executed when $.ui.launch has completed
 $.ui.ready(function () {
    // FIXME: must fix the initialization order of the various libraries!
-	myUi.init();
+	app.pushQueue(function() {
+		myUi.init();
+	});
 });
 
 

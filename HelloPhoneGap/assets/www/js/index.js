@@ -30,6 +30,8 @@ var app = {
         this.bindEvents();
     },
     
+    ready : false,
+    
     updateGeoPosition: function(callback) {
 
           var options = {enableHighAccuracy: true,timeout:5000};
@@ -48,6 +50,27 @@ var app = {
            		options);		
 
 	},
+	
+	executeQueue: function() {
+		
+		for(var i = 0; i < this.queue.length; ++i) {
+			this.queue[i]();
+		}
+		
+		this.queue.length = 0;
+	},
+	
+	pushQueue: function(func) {
+	
+		if(!this.ready) {
+			queue.push(func);
+		}
+		else {
+			func();
+		}
+	},
+	
+	queue: [],
     
     geoCoords: null, 		
     
@@ -76,9 +99,26 @@ var app = {
         // app init functions
 		app.updateGeoPosition();
 		
+		//app.loadScripts();
+		app.ready = true;
+		app.executeQueue();
 		console.log('Device ready');
         
         
+    },
+    
+    loadScripts: function() {
+    
+        /*
+        var scripts = 
+	        "<script type='text/javascript' src='js/lib/jq.mvc.min.js'></script>\n"  +
+	        "<script type='text/javascript' src='js/lib/jq.ui.min.js'></script>\n" +
+	        "<script type='text/javascript' src='js/lib/jq.template.js'></script>\n" +
+	        "<script type='text/javascript' src='js/ui.js'></script>\n";
+	        
+	     $('head').append(scripts);   
+        */
+    
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
