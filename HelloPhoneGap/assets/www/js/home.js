@@ -4,7 +4,7 @@ var homePage =  {
     
     
     	// FIXME:
-    	if(device) {
+    	if(typeof(device) !== "undefined") {
 	            $('#props').html('Device Name: ' + device.name + '<br />' + 
 	            				  'Device PhoneGap: ' + device.phonegap + '<br />' + 
 	            				  'Device Platform: ' + device.platform + '<br/>' + 

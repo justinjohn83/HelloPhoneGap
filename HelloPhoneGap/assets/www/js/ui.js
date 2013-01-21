@@ -33,7 +33,7 @@ function loadedPanel(what) {
 			// homePanel loaded before we can init the app (so there is some dependency order init that is still needed)
 			// so far now we will defer the initiation of the home content until we can load the template
 		
-			//myUi.home.init();
+			myUi.home.init();
 			break;
 		}
 	
