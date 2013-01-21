@@ -2,10 +2,30 @@
 //TODO: jqMobi doesn't seem to like namespaces and these need to be raw, global functions :(
 
 //This function will get executed when $.ui.launch has completed
+
+var app = app || {};
+
+$(document).ready(function() {
+
+	app.mvc = new $.mvc.app();
+	// app not respecting base dir - this is a bug!
+	//app.mvc.setBaseDir("js/template/");
+	app.mvc.controllersDir("js/template/controllers/"); //Set the directory to your controllers folder if it is not named "controllers".
+	app.mvc.modelsDir("js/template/models/"); //Set the directory to your models folder if it is not named "models";
+	
+	app.mvc.loadControllers(["navigation"]); //You can pass in array or a string.Ê You do not need to reference the .js extension.
+});
+
+// ensure that UI framework is loaded
 $.ui.ready(function () {
-   // FIXME: must fix the initialization order of the various libraries!
-	app.pushQueue(function() {
-		myUi.init();
+
+	app.mvc.ready(function() {
+		// ensure that phone gap is already initialized
+		app.pushQueue(function() {
+			// load the default route
+			$.mvc.route("navigation/");
+			
+		});
 	});
 });
 
@@ -15,27 +35,24 @@ function loadedPanel(what) {
 	console.log("Loaded panel: " + id);
 	
 	switch(id) {
+	
+		// route through the correct controller to load the content for that panel
 		case 'cameraPanel': {
-		    // TODO: will need to reinitialize the templates!
-		    $("#cameraContent").html($.template("cameraPanel_tpl"));
-			myUi.camera.init();
+			$.mvc.route("navigation/camera");
 			break;
 		}
 		case 'mapPanel': {
-			// TODO: will need to reinitialize the templates!
-	       	$("#mapContent").html($.template("mapPanel_tpl"));
-			myUi.map.init();
-		
+			$.mvc.route("navigation/map");
 			break;
 		}
 		
 		case 'homePanel' : {
+			$.mvc.route("navigation/home");
+			break;
+		}
 		
-			// TODO: will need to reinitialize the templates!
-			// homePanel loaded before we can init the app (so there is some dependency order init that is still needed)
-			// so far now we will defer the initiation of the home content until we can load the template
-		
-			myUi.home.init();
+		case 'questionsPanel': {
+			// TODO:
 			break;
 		}
 	
@@ -47,112 +64,26 @@ function unloadedPanel(what) {
 	var id = what.id;
 	console.log("unloaded "+ id);
 	
+	// TODO: nothing to do here right now
 	switch(id) {
 		case 'cameraPanel': {
 		
-			myUi.camera.dispose();
 			break;
 		}
 		case 'mapPanel': {
-			myUi.map.dispose();
 		
 			break;
 		}
 		
 		case 'homePanel' : {
-			myUi.home.dispose();
+			break;
+		}
+		
+		case 'questionsPanel' : {
 			break;
 		}
 	
 	}
 }
 /////// End Globals ///////////
-
-
-///// Ui delgates ///////////////
-
-var myUi = {
-
-	init: function() {
-	
-		// mvc config
-		var app = new $.mvc.app();
- 		app.setBaseDir("js/template");
-		app.controllersDir("controllers"); //Set the directory to your controllers folder if it is not named "controllers".
-		app.modelsDir("models"); //Set the directory to your models folder if it is not named "models";
-		//app.viewsDir("js/template/views");
-		
-		//app.ready(function); //Function that executes as soon as the jqMVC app has completed loading, or right away if it 
-		                     // has already loaded.
-		                     
-		// Must give full paths
-		$.mvc.controller.create("foo",
-			{views:{
-					"homePanel_tpl":"js/template/views/homePanel.tpl",
-					"cameraPanel_tpl":"js/template/views/cameraPanel.tpl",
-					"mapPanel_tpl":"js/template/views/mapPanel.tpl"
-				  }
-		
-			   /* other code*/
-			,
-			
-			init: function() {
-	       		//$("#cameraContent").html($.template("cameraPanel_tpl"));
-	       		//$("#mapContent").html($.template("mapPanel_tpl"));
-	       		var content = $.template("homePanel_tpl");
-	       		$("#homeContent").html(content);
-	       		myUi.home.init();
-	       	
-	       },
-	       /*
-	       "default":function(){
-	       	    var content = $.template("homePanel_tpl");
-	       		$("#homeContent").html(content);
-	       }
-	       */
-        });                     
-		console.log('UI init');
-	
-	
-	},
-	
-    camera : {
-    	
-    	init: function() {
-    		cameraPage.takePicture();
-    	
-    	},
-    	
-    	dispose : function() {
-    		// TODO;
-    	
-    	}  
-    }, 
-    
-    map : {
-            	
-    	init : function() {
-    		mapPage.showMap();
-    	
-    	},
-    	
-    	dispose : function() {
-    	
-    	
-    	}
-    },
-    
-    home: {
-    	init: function() {
-    		homePage.showInfo();
-    	},
-    	
-    	dispose : function() {
-    	
-    	
-    	}
-    }
-
-
-};
 

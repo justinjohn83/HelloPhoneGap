@@ -24,15 +24,16 @@
  	            
 });
  
-var app = {
+var app = app || {};
+
     // Application Constructor
-    initialize: function() {
+    app.initialize = function() {
         this.bindEvents();
-    },
+    };
     
-    ready : false,
+    app.ready = false;
     
-    updateGeoPosition: function(callback) {
+    app.updateGeoPosition = function(callback) {
 
           var options = {enableHighAccuracy: true,timeout:5000};
            navigator.geolocation.getCurrentPosition(
@@ -49,18 +50,18 @@ var app = {
            		
            		options);		
 
-	},
+	};
 	
-	executeQueue: function() {
+	app.executeQueue = function() {
 		
 		for(var i = 0; i < this.queue.length; ++i) {
 			this.queue[i]();
 		}
 		
 		this.queue.length = 0;
-	},
+	};
 	
-	pushQueue: function(func) {
+	app.pushQueue = function(func) {
 	
 		if(!this.ready) {
 			this.queue.push(func);
@@ -68,25 +69,25 @@ var app = {
 		else {
 			func();
 		}
-	},
+	};
 	
-	queue: [],
+	app.queue = [];
     
-    geoCoords: null, 		
+    app.geoCoords= null;		
     
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    app.bindEvents= function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         
-    },
+    };
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    app.onDeviceReady= function() {
         app.receivedEvent('deviceready');
        
         
@@ -105,9 +106,9 @@ var app = {
 		console.log('Device ready');
         
         
-    },
+    };
     
-    loadScripts: function() {
+    app.loadScripts= function() {
     
         /*
         var scripts = 
@@ -119,9 +120,10 @@ var app = {
 	     $('head').append(scripts);   
         */
     
-    },
+    };
+    
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    app.receivedEvent = function(id) {
     
     /*
         var parentElement = document.getElementById(id);
@@ -133,32 +135,30 @@ var app = {
      */
 
         console.log('Received Event: ' + id);
-    },
+    };
     
     // Handle the backbutton //
-	onBackButton: function() {
+	app.onBackButton= function() {
 		console.log('You hit the back button!');
 		alert('You hit the back button!',null,'Back');
-	 },
+	 };
 	// Handle the menubutton //
-	onMenuButton: function() {
+	app.onMenuButton= function() {
 		console.log('You hit the menu button!');
 		alert('You hit the menu button!',null,'Menu'); 
-	},
+	};
 	
 	// Handle the searchbutton //
-	onSearchButton: function() {
+	app.onSearchButton= function() {
 		console.log('You hit the search button!');
 		alert('You hit the search button!',null,'Search'); 
-	},
+	};
 	
-	onOnline: function() {
+	app.onOnline= function() {
 		console.log('on online');
-	},
+	};
 	
-	onOffline: function() {
+	app.onOffline= function() {
 		console.log('on offline');
-	}
-	
-	
-};
+	};
+
