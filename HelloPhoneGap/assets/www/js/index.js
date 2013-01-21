@@ -63,7 +63,7 @@ var app = {
 	pushQueue: function(func) {
 	
 		if(!this.ready) {
-			queue.push(func);
+			this.queue.push(func);
 		}
 		else {
 			func();
