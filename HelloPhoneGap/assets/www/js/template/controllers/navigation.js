@@ -4,7 +4,7 @@ var navigationController = {
 					"homePanel_tpl":"js/template/views/homePanel.tpl",
 					"cameraPanel_tpl":"js/template/views/cameraPanel.tpl",
 					"mapPanel_tpl":"js/template/views/mapPanel.tpl",
-					//"questionsPanel_tpl":"js/template/views/questions.tpl"
+					"questionsPanel_tpl":"js/template/views/questions.tpl"
 				  }
 		
 			   /* other code*/
@@ -36,6 +36,26 @@ var navigationController = {
 		    camera:function(){
 		         $("#cameraContent").html($.template("cameraPanel_tpl"));
 		         cameraPage.takePicture();
+		    },
+		    
+		    questions:function(index) {
+		    
+		    	// TODO: this needs to be cached
+		    	new QuestionModel().getAll(function(results){
+		    		// if no questions exist then create some defaults
+		    		if(!results || results.length == 0) {
+		    			results = app.loadDefaultQuestions();
+		    		}
+		    		var currentQuestion = (typeof index !== 'undefined') ? results[index] : results[0];
+		    		
+		    		// set the view
+		    		$("#questionsContent").html($.template('questionsPanel_tpl',{question:currentQuestion}));
+		    		
+						
+						
+		    	});
+		    	
+		    
 		    },
 		    // default action to home : route "navigation/"
 		    "default":function(){

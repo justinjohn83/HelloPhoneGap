@@ -13,6 +13,7 @@ $(document).ready(function() {
 	app.mvc.controllersDir("js/template/controllers/"); //Set the directory to your controllers folder if it is not named "controllers".
 	app.mvc.modelsDir("js/template/models/"); //Set the directory to your models folder if it is not named "models";
 	
+	app.mvc.loadModels(["questions"]);
 	app.mvc.loadControllers(["navigation"]); //You can pass in array or a string.Ê You do not need to reference the .js extension.
 });
 
@@ -52,7 +53,7 @@ function loadedPanel(what) {
 		}
 		
 		case 'questionsPanel': {
-			// TODO:
+			$.mvc.route("navigation/questions");
 			break;
 		}
 	

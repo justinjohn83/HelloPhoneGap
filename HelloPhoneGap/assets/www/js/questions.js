@@ -14,11 +14,13 @@ app.questionType = {
 	Text:1,
 	Combo:2,
 	Check:3,
-	Radio:4
+	Radio:4,
+	TextArea:5
 
 
 };
 
+/*
 app.question = function(questionType,choices) {
 	
 	var that = {};
@@ -30,17 +32,9 @@ app.question = function(questionType,choices) {
 	return that;
 
 };
-
-app.questions = [
-	
-	app.question(app.questionType.Text,{name:'Favorite Teacher'}),
-	app.question(app.questionType.Combo,{name:'Favorite Color',value:['Blue','Green','Red','Purple','Orange']}),
-	app.question(app.questionType.Check,{name:'Favorite foods',value:['Pizza','Burgers','Salad']}),
-	app.question(app.questionType.Radio,{name:'Morning Person?',value:['Yes','No']})
+*/
 
 
-
-];
 
 
 
