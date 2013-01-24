@@ -17,6 +17,19 @@ $(document).ready(function() {
 	app.mvc.loadControllers(["navigation"]); //You can pass in array or a string.Ê You do not need to reference the .js extension.
 });
 
+function appRoute(route) {
+
+	$.mvc.route(route);
+}
+
+function nextQuestion(currentIndex,route) {
+		//$.mvc.route('navigation/saveQuestion/' + currentIndex);
+		// FIXME: this "navigationController" method belongs as a business class method!
+		if(navigationController.saveQuestion(currentIndex)) {
+			$.mvc.route(route);
+		}
+}
+
 // ensure that UI framework is loaded
 $.ui.ready(function () {
 
@@ -53,8 +66,7 @@ function loadedPanel(what) {
 		}
 		
 		case 'questionsPanel': {
-			// TODO: Testing individual questions - drop the index
-			$.mvc.route("navigation/questions/1");
+			$.mvc.route("navigation/questions");
 			break;
 		}
 	

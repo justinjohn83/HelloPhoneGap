@@ -13,11 +13,22 @@ app.questions = [
 ];
 */
 
-var QuestionModel = $.mvc.model.extend("question",{questionType:null,choices:{}});
+var QuestionModel = $.mvc.model.extend("question",{questionType:null,choices:{},value:[]});
 
 
 var app = app || {};
 
+app.createQuestionModel = function(modelData) {
+	var q = new QuestionModel();
+	if(modelData.id !== 'undefined') {
+		q.id = modelData.id;
+	}
+	q.value = modelData.value;
+	
+	return q;
+	
+
+}
 // if no questions exist then create some defaults
 app.loadDefaultQuestions = function() {
 		var questions = [];
@@ -25,41 +36,38 @@ app.loadDefaultQuestions = function() {
 		var q = new QuestionModel();
 		q.questionType = app.questionType.Text;
 		q.choices = {name:'Favorite Teacher'};
+		q.value = [];
 		questions.push(q);
 		
 		q = new QuestionModel();
 		q.questionType = app.questionType.Combo;
 		q.choices = {name:'Favorite Color',value:['Blue','Green','Red','Purple','Orange']};
+		q.value = [];
+		
 		questions.push(q);
 		
-		questions.push(new QuestionModel(
-			{
-				questionType:app.questionType.Check,
-				choices:{name:'Favorite foods',value:['Pizza','Burgers','Salad']}
 		
-			})
+		q = new QuestionModel();
+		q.questionType = app.questionType.Check;
+		q.choices = {name:'Favorite foods',value:['Pizza','Burgers','Salad']};
+		q.value = [];
 		
-		);
+		questions.push(q);
 		
-		questions.push(new QuestionModel(
 		
-			{
-				questionType:app.questionType.Radio,
-				choices:{name:'Morning Person?',value:['Yes','No']}
-			
-			
-			})
-		);
+		q = new QuestionModel();
+		q.questionType = app.questionType.Radio;
+		q.choices = {name:'Morning Person?',value:['Yes','No']};
+		q.value = [];
 		
-		questions.push(new QuestionModel(
+		questions.push(q);
 		
-			{
-				questionType:app.questionType.TextArea,
-				choices:{name:'Comments'}
-			
-			
-			})
-		);
+		q = new QuestionModel();
+		q.questionType = app.questionType.TextArea;
+		q.choices = {name:'Comments'};
+		q.value = [];
+		
+		questions.push(q);
 		
 		return questions;
 };

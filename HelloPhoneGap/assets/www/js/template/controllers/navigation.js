@@ -4,7 +4,9 @@ var navigationController = {
 					"homePanel_tpl":"js/template/views/homePanel.tpl",
 					"cameraPanel_tpl":"js/template/views/cameraPanel.tpl",
 					"mapPanel_tpl":"js/template/views/mapPanel.tpl",
-					"questionsPanel_tpl":"js/template/views/questions.tpl"
+					"questionsPanel_tpl":"js/template/views/questions.tpl",
+					"questionsPanelFinish_tpl":"js/template/views/questionsFinish.tpl",
+					
 				  }
 		
 			   /* other code*/
@@ -38,22 +40,94 @@ var navigationController = {
 		         cameraPage.takePicture();
 		    },
 		    
-		    questions:function(index) {
+		    submitQuestions: function() {
+		    	var self = navigationController;
+		    	/*
+		    	if(self.questionsModel) {
+		    		var qtn = self.questionsModel[self.questionsModel.length - 1];
+		    		self.saveQuestion(qtn);
+		    	}
+		    	*/
+		    	$("#questionsContent").html($.template('questionsPanelFinish_tpl'));
 		    
-		    	// TODO: this needs to be cached
-		    	new QuestionModel().getAll(function(results){
+		    },
+		    
+		    // FIXME: this does not belong here - move this and actual logic in "questions" to a business logic class
+		    saveQuestion: function(index) {
+		    
+		    	var self = navigationController;		    	
+		    	var question = app.createQuestionModel(self.questionsModel[index]);
+		    	
+		    	
+		    	
+		    	// TODO: read the question data, update model, and save
+		    	question.save(function(savedQuestion) {
+		    		// TODO:
+		    	});
+		    	
+		    	return true;
+		    },
+		    
+		    questionsModel:null,
+		    
+		    questions:function(index) {
+		    	
+		    	var self = navigationController;
+		    	
+		    	var resultCallback = function(results){
 		    		// if no questions exist then create some defaults
 		    		if(!results || results.length == 0) {
 		    			results = app.loadDefaultQuestions();
 		    		}
-		    		var currentQuestion = (typeof index !== 'undefined') ? results[index] : results[0];
+		    		self.questionsModel = results;
 		    		
+		    		if(typeof index === 'undefined') {
+		    			index = 0;
+		    		}
+		    		else {
+		    			index = parseInt(index);
+		    		}	
+		    		var currentQuestion = results[index];
+		    		
+		    		var linkValue;
+		    		var linkText;
+		    		var isRoute;
+		    		
+		    		if(index < results.length - 1) {
+		    			linkValue = 'navigation/questions/' + (index + 1);
+		    			linkText = 'Next';
+		    			isRoute = true;
+		    		}
+		    		else {
+		    			linkValue = 'navigation/submitQuestions/';
+		    			linkText = 'Finish';
+		    			isRoute = true;
+		    		}
+		    		
+		    		var model = {
+		    						question:currentQuestion,
+		    					 	linkValue:linkValue,
+		    					 	linkText:linkText,
+		    					 	isRoute: isRoute,
+		    					 	currentIndex: index,
+		    					 };
+		    		// save previous question
+		    					 
 		    		// set the view
-		    		$("#questionsContent").html($.template('questionsPanel_tpl',{question:currentQuestion}));
+		    		$("#questionsContent").html($.template('questionsPanel_tpl',model));
 		    		
 						
 						
-		    	});
+		    	}; // resultsCallback
+		    	
+		    	if(!self.questionsModel) {
+		    		// remote call
+		    		new QuestionModel().getAll(resultCallback);
+		    	}
+		    	else {
+		    		// call based on cached data
+		    		resultCallback(self.questionsModel);
+		    	}
 		    	
 		    
 		    },
