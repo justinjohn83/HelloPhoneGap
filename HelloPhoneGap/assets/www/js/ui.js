@@ -53,7 +53,8 @@ function loadedPanel(what) {
 		}
 		
 		case 'questionsPanel': {
-			$.mvc.route("navigation/questions");
+			// TODO: Testing individual questions - drop the index
+			$.mvc.route("navigation/questions/1");
 			break;
 		}
 	

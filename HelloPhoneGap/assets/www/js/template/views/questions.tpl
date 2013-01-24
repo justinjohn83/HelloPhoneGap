@@ -16,5 +16,18 @@ app.questions = [
 
 <br/>
 <br/>
-<%=question.choices.name %> : <input id="questionValue" name="questionValue" type="text"/>
+<% if(question.questionType === app.questionType.Text) { %>
+
+	<%=question.choices.name %> : <input id="questionValue" name="questionValue" type="text"/>
+	
+<% } %>
+
+<% else if(question.questionType === app.questionType.Combo) { %>
+	<%=question.choices.name %><br/>
+	<select name="questionValue" id="questionValue">
+		<% for(var i = 0; i < question.choices.value.length; ++i) { %>
+			<option value="<%=question.choices.value[i]%>"><%=question.choices.value[i]%></option>
+		<% } %>
+	</select>
+%> } %>
 

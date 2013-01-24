@@ -27,14 +27,10 @@ app.loadDefaultQuestions = function() {
 		q.choices = {name:'Favorite Teacher'};
 		questions.push(q);
 		
-		questions.push(new QuestionModel(
-			{
-				questionType:app.questionType.Combo,
-				choices:{name:'Favorite Color',value:['Blue','Green','Red','Purple','Orange']}
-			
-			
-			})
-		);
+		q = new QuestionModel();
+		q.questionType = app.questionType.Combo;
+		q.choices = {name:'Favorite Color',value:['Blue','Green','Red','Purple','Orange']};
+		questions.push(q);
 		
 		questions.push(new QuestionModel(
 			{
