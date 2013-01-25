@@ -1,14 +1,15 @@
 <br/>
-<div id="currentQuestion">
+<form id="currentQuestion">
+<fieldset>
 <% if(question.questionType === app.questionType.Text) { %>
-
-	<%=question.choices.name %> : <input name="questionValue" type="text"/>
+	<h4><%=question.choices.name %></h4><br/>
+	<input name="questionValue" type="text" class="jq-ui-forms"/>
 	
 <% } %>
 
 <% if (question.questionType === app.questionType.Combo) { %>
-	<%=question.choices.name %><br/>
-	<select name="questionValue">
+	<h4><%=question.choices.name %></h4><br/>
+	<select name="questionValue" class="jq-ui-forms">
 		<% for(var i = 0; i < question.choices.value.length; ++i) { %>
 			<option value="<%=question.choices.value[i]%>"><%=question.choices.value[i]%></option>
 		<% } %>
@@ -16,25 +17,32 @@
 <% } %>
 
 <% if(question.questionType === app.questionType.Check) { %>
-	<%=question.choices.name %><br/>
+	<h4><%=question.choices.name %></h4><br/>
 		<% for(var i = 0; i < question.choices.value.length; ++i) { %>
-			<input type="checkbox" name="questionValue" value="<%=question.choices.value[i]%>"><%=question.choices.value[i]%><br>
+			<p>
+				<input type="checkbox" class="jq-ui-forms" value="<%=question.choices.value[i]%>"/>
+				<label for="<%=question.choices.value[i]%>"><%=question.choices.value[i]%></label>
+			</p>
 		<% } %>	
 <% } %>
 
 <% if(question.questionType === app.questionType.Radio) { %>
-	<%=question.choices.name %><br/>
+	<h4><%=question.choices.name %></h4><br/>
 		<% for(var i = 0; i < question.choices.value.length; ++i) { %>
-			<input type="radio" name="questionValue" value="<%=question.choices.value[i]%>"><%=question.choices.value[i]%><br>
+			<p>
+				<input type="radio" name="questionValue" class="jq-ui-forms" value="<%=question.choices.value[i]%>"/>
+				<label for="<%=question.choices.value[i]%>"><%=question.choices.value[i]%></label>
+			</p>
 		<% } %>	
 <% } %>
 
 <% if(question.questionType === app.questionType.TextArea) { %>
 
-	<%=question.choices.name %> <br/>
-	<textarea name="questionValue" rows="10" cols="30"></textarea>
+	<h4><%=question.choices.name %></h4><br/>
+	<textarea name="questionValue" class="jq-ui-forms"></textarea>
 	
 <% } %>
+<br/>
 <br/>
 <ul>
 	<li>
@@ -45,5 +53,5 @@
 		<a href="<%=linkValue%>"><%=linkText%></a>	            
 	</li>
 </ul>
-
-</div>
+</fieldset>
+</form>

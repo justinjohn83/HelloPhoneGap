@@ -61,10 +61,11 @@ var navigationController = {
 		    	
 		    	
 		    	// TODO: read the question data, update model, and save
+		    	/*
 		    	question.save(function(savedQuestion) {
 		    		// TODO:
 		    	});
-		    	
+		    	*/
 		    	return true;
 		    },
 		    
@@ -76,7 +77,9 @@ var navigationController = {
 		    	
 		    	var resultCallback = function(results){
 		    		// if no questions exist then create some defaults
-		    		if(!results || results.length == 0) {
+		    		// TODO:
+		    		if(!results || results.length !== 5) {
+		    			// TODO: splice the results with any questions that already exist
 		    			results = app.loadDefaultQuestions();
 		    		}
 		    		self.questionsModel = results;

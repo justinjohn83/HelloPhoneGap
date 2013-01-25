@@ -1,1 +1,3 @@
-<h3>Thank you for participating!</h3>
+<br/>
+<h2>Thank you for participating!</h2>
+
