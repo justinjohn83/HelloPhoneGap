@@ -3,6 +3,11 @@ jqMobi + backbone + handlebars + phonegap
 PhoneGap
 jqMobi
 jqMobi UI
+jqMobi MVC
 
 - add unminified versions of the css and js and then minify as part of the build process
 - Need to make a build.xml for build process that is also eclipse friendly
+
+
+- "select" controls do not work on Android 2.2 -> Use another control for this
+   (Need to find minimum version where they do work) - works on Ice Cream Sandwich (4.03) + 

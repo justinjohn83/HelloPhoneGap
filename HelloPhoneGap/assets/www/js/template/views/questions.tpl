@@ -8,7 +8,7 @@
 <% } %>
 
 <% if (question.questionType === app.questionType.Combo) { %>
-	<label for="<%=question.choices.name %>"><%=question.choices.name %></label>
+	<h4><%=question.choices.name %></h4>
 	<br/>
 	<span>
 	<select name="questionValue" class="jq-ui-forms">
@@ -17,6 +17,7 @@
 		<% } %>
 	</select>
 	</span>
+	<br/>
 <% } %>
 
 <% if(question.questionType === app.questionType.Check) { %>
