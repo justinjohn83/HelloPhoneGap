@@ -8,12 +8,15 @@
 <% } %>
 
 <% if (question.questionType === app.questionType.Combo) { %>
-	<h4><%=question.choices.name %></h4><br/>
+	<label for="<%=question.choices.name %>"><%=question.choices.name %></label>
+	<br/>
+	<span>
 	<select name="questionValue" class="jq-ui-forms">
 		<% for(var i = 0; i < question.choices.value.length; ++i) { %>
 			<option value="<%=question.choices.value[i]%>"><%=question.choices.value[i]%></option>
 		<% } %>
 	</select>
+	</span>
 <% } %>
 
 <% if(question.questionType === app.questionType.Check) { %>
