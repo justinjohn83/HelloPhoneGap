@@ -3,6 +3,7 @@
 
 <property name = "build.path" value = "/Users/jmontgomery/http/helloPhoneGap"/>
 <property name = "project.path" value = "${basedir}/assets/www"/>
+<property name ="build.path.local" value = "${basedir}/build"/>
 	
 <target name = "clean" description = "Remove all files under build">
 		<echo message = "Removing built files and directories..."/>
@@ -21,6 +22,21 @@
 			<exclude name="**/*.ini"/>
 		</fileset>
 	</copy>
+	
+</target>
+
+
+<target name = "packageAssets" description = "Create zip of web assets">
+	
+	<mkdir dir="${build.path.local}"/>
+	<!-- zip the files -->
+	 
+	<zip destfile = "${build.path.local}/HelloPhoneGap.zip"
+	     basedir="${project.path}"
+	     excludes="**/.*,**/*.ini"
+	     compress="true"
+	     level = "9"
+	/>
 	
 </target>
 
