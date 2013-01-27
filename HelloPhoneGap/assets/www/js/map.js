@@ -1,8 +1,11 @@
 var mapPage = (function() {
 
-	var map;
-	var markers =  [];
+	// private fields
+	var m_map;
+	var m_markers =  [];
 	var that = {};
+	
+	// method defintions
 	that.showMap = function() {
            		
            			console.log('updating location');
@@ -23,7 +26,7 @@ var mapPage = (function() {
 						  };
 					
 				    var mapElm = $('#map_canvas')[0];
-					this.map=new google.maps.Map(mapElm,mapProp);
+					m_map=new google.maps.Map(mapElm,mapProp);
 					
 					console.log('updating map');
 					
@@ -34,6 +37,26 @@ var mapPage = (function() {
 	};
 	
 	
+	// private method to update marker array given a dragged marker on map
+	var addMarkerListener = function(marker,coordIndex) {
+	  				  
+			      google.maps.event.addListener(marker, "dragstart", function(event) {
+			            //map.closeInfoWindow();
+			            console.log("Dragging marker...");
+			        });
+			        
+			        google.maps.event.addListener(marker, "dragend", function(event) {
+			        	console.log("End dragging marker.");
+			            var center = marker.getPosition();
+			            // update the coordinate reference
+			            m_markers[coordIndex] = center;
+			            console.log("Updated marker coords to [" + center.lat() + "," + center.lng() + "]");
+			            
+			           // marker.openInfoWindowHtml("<font color=black>" + myHtml + "<br>" + center.toString() + "</font>");
+			        });
+	  
+	  };
+  
 	that.updateMarkers = function() {
   
 		// calculate the bounding box of th emarkets so we can center about it
@@ -46,7 +69,7 @@ var mapPage = (function() {
 	   // TODO:
 	   var coordsArray = [new google.maps.LatLng(app.geoCoords.latitude,app.geoCoords.longitude)];
 	   // keep track of currently set markers
-	   this.markers = coordsArray;
+	   m_markers = coordsArray;
 	   
 		for(var i = 0; i < coordsArray.length; ++i) {
 		
@@ -95,21 +118,28 @@ var mapPage = (function() {
 		    var googleUrl = "http://chart.googleapis.com/chart?chst=d_map_spin&chld=0.7|0|A8D0F0|12|_|" + markerTitle;
 			
 		    var marker = new google.maps.Marker({
-				map: this.map,
+				map: m_map,
 				position: coordsArray[i],
 				title:title,
-		        icon: googleUrl
+		        icon: googleUrl,
+		        // allow the marker to be moved
+		        draggable: true
 			});
+			
+			 addMarkerListener(marker,i);
 		    
 			 bound.extend(marker.getPosition());
 
 		}
+
 		
 		// scale the map
-	    this.map.fitBounds(bound);
+	    m_map.fitBounds(bound);
 		
   
-  };
+  }; // updateMarkers
+  
+
   
   return that;
 })();
