@@ -91,9 +91,9 @@ var app = app || {};
         app.receivedEvent('deviceready');
        
         
-        document.addEventListener('searchbutton', app.onSearchButton, false);
-        document.addEventListener('menubutton', app.onMenuButton, false);
-        document.addEventListener('backbutton', app.onBackButton, false);
+        //document.addEventListener('searchbutton', app.onSearchButton, false);
+        //document.addEventListener('menubutton', app.onMenuButton, false);
+        //document.addEventListener('backbutton', app.onBackButton, false);
         document.addEventListener('online',app.onOnline,false);
         document.addEventListener('offline',app.onOffline,false);
         
@@ -140,18 +140,18 @@ var app = app || {};
     // Handle the backbutton //
 	app.onBackButton= function() {
 		console.log('You hit the back button!');
-		alert('You hit the back button!',null,'Back');
+		//alert('You hit the back button!',null,'Back');
 	 };
 	// Handle the menubutton //
 	app.onMenuButton= function() {
 		console.log('You hit the menu button!');
-		alert('You hit the menu button!',null,'Menu'); 
+		//alert('You hit the menu button!',null,'Menu'); 
 	};
 	
 	// Handle the searchbutton //
 	app.onSearchButton= function() {
 		console.log('You hit the search button!');
-		alert('You hit the search button!',null,'Search'); 
+		//alert('You hit the search button!',null,'Search'); 
 	};
 	
 	app.onOnline= function() {

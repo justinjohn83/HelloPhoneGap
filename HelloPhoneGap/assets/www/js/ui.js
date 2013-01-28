@@ -14,12 +14,16 @@ $(document).ready(function() {
 	app.mvc.modelsDir("js/template/models/"); //Set the directory to your models folder if it is not named "models";
 	
 	app.mvc.loadModels(["questions"]);
-	app.mvc.loadControllers(["navigation"]); //You can pass in array or a string.Ê You do not need to reference the .js extension.
+	app.mvc.loadControllers(["navigation"]); //You can pass in array or a string. You do not need to reference the .js extension.
 });
 
 function appRoute(route) {
 
 	$.mvc.route(route);
+}
+
+function takePicture() {
+	cameraPage.takePicture();
 }
 
 function nextQuestion(currentIndex,route) {

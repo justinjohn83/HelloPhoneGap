@@ -37,7 +37,6 @@ var navigationController = {
 		    
 		    camera:function(){
 		         $("#cameraContent").html($.template("cameraPanel_tpl"));
-		         cameraPage.takePicture();
 		    },
 		    
 		    submitQuestions: function() {
