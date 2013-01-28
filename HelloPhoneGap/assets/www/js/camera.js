@@ -8,6 +8,11 @@ var cameraPage = {
 		   allowEdit:true, 
 		   destinationType:Camera.DestinationType.FILE_URI 
 	   });
+	   
+	   // FIXME: having issues getting onSuccess called see
+	   //http://stackoverflow.com/questions/9303701/phonegap-app-quits-after-camera-captures-image-android
+	   // also see http://code.google.com/p/foreground-camera-plugin/
+	   // and http://stackoverflow.com/questions/8368091/phonegap-camera-restarts-the-application/9524643#
 	  	 
 		function onSuccessRaw(imgData) {
 			console.log("Got image data...");
