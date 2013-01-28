@@ -4,7 +4,7 @@ var cameraPage = {
 	
 	   navigator.camera.getPicture(onSuccessUri, onFail, 
 	   { 
-		   quality: 35, 
+		   quality: 25, 
 		   allowEdit:true, 
 		   destinationType:Camera.DestinationType.FILE_URI 
 	   });
