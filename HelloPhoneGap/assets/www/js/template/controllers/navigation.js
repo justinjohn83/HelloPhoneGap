@@ -32,7 +32,7 @@ var navigationController = {
 	       	    $("#mapContent").html($.template("mapPanel_tpl"));
 	       
 	       		// map should already be triggered by geolocation update : nothing to do here
-    			//mapPage.showMap();
+    			mapPage.showMap();
 
 		    },
 		    

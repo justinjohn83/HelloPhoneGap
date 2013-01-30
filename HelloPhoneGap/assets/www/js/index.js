@@ -41,7 +41,7 @@ var app = app || {};
            		
            			app.geoCoords = position.coords;
            			// update the map
-           			mapPage.showMap();
+           			//mapPage.showMap();
            		},
            		
            		function(error) {

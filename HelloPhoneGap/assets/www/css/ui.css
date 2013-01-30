@@ -1,0 +1,5 @@
+img#camera_image {
+	/* workaround for camera implementation taking only landscape photos */
+	-webkit-transform: rotate(90deg);
+	display:block;
+}
