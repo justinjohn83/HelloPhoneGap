@@ -39,7 +39,9 @@
     <plugin name="Accelerometer" value="org.apache.cordova.AccelListener"/>
     <plugin name="Compass" value="org.apache.cordova.CompassListener"/>
     <plugin name="Media" value="org.apache.cordova.AudioHandler"/>
+    <!--  
     <plugin name="Camera" value="org.apache.cordova.CameraLauncher"/>
+    -->
     <plugin name="Contacts" value="org.apache.cordova.ContactManager"/>
     <plugin name="File" value="org.apache.cordova.FileUtils"/>
     <plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager"/>
@@ -51,6 +53,10 @@
     <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
     <plugin name="Echo" value="org.apache.cordova.Echo" />
     <plugin name="Globalization" value="org.apache.cordova.Globalization"/>
+    
+    <!-- Plugin to camera -->
+    <plugin name="Camera" value="com.foregroundcameraplugin.ForegroundCameraLauncher"/>
+    
 </plugins>
 </cordova>
 

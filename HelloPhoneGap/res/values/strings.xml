@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, HelloPhoneGapActivity!</string>
     <string name="app_name">HelloPhoneGap</string>
-
+    <string name="lblCapturar">Capture</string>
+    <string name="lblCancelar">Cancel</string>
+    
 </resources>

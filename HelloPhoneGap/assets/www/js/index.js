@@ -40,7 +40,8 @@ var app = app || {};
            		function(position) {
            		
            			app.geoCoords = position.coords;
-           		
+           			// update the map
+           			mapPage.showMap();
            		},
            		
            		function(error) {

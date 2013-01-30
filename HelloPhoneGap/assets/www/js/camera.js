@@ -6,7 +6,9 @@ var cameraPage = {
 	   { 
 		   quality: 25, 
 		   allowEdit:true, 
-		   destinationType:Camera.DestinationType.FILE_URI 
+		   	targetWidth: 128,
+	        targetHeight: 128,
+		   //destinationType:Camera.DestinationType.FILE_URI 
 	   });
 	   
 	   // FIXME: having issues getting onSuccess called see
@@ -16,10 +18,12 @@ var cameraPage = {
 	  	 
 		function onSuccessRaw(imgData) {
 			console.log("Got image data...");
+			console.log("imgData=" + imgData);
 			
 			var image = $('#camera_image');
 			
 			image.attr("src","data:image/jpeg;base64," + imgData);
+			//image.attr("src",imgData);
 		}
 		function onSuccessUri(imgUri) {
 			console.log("Got image uri..." + imgUri);
