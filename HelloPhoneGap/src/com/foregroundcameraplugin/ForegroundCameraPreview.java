@@ -1,5 +1,5 @@
 /*
-	    Copyright 2012 Bruno Carreira - Lucas Farias - Rafael Luna - Vinícius Fonseca. 
+	    Copyright 2012 Bruno Carreira - Lucas Farias - Rafael Luna - Vinï¿½cius Fonseca. 
 
 		Licensed under the Apache License, Version 2.0 (the "License");
 		you may not use this file except in compliance with the License.
@@ -32,7 +32,10 @@ public class ForegroundCameraPreview extends SurfaceView implements SurfaceHolde
     public ForegroundCameraPreview(Context context, Camera camera) {
         super(context);
         mCamera = camera;
-
+        initHolder();
+    }
+    
+    private void initHolder() {
         mHolder = getHolder();
         mHolder.addCallback(this);
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
@@ -52,7 +55,11 @@ public class ForegroundCameraPreview extends SurfaceView implements SurfaceHolde
     
 
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
-
+    	
+    	if(mHolder != getHolder()) {
+    		initHolder();
+    	}
+    	
         if (mHolder.getSurface() == null){
           return;
         }
