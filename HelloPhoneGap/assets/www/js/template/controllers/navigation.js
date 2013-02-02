@@ -61,6 +61,9 @@ var navigationController = (function() {
 		    
 		    	var question = app.createQuestionModel(questionsModel[index]);
 		    	
+		    	// value should already be updated by knockout
+		    	
+		    	/*
 		    	var value;
 		    	switch(question.questionType) {
 		    		case app.questionType.Combo:
@@ -91,6 +94,7 @@ var navigationController = (function() {
 		    	if(value) {
 		    		question.value = value;
 		    	}
+		    	*/
 		    	
 		    	// TODO: read the question data, update model, and save
 		    	
@@ -147,6 +151,20 @@ var navigationController = (function() {
 		    					 
 		    		// set the view
 		    		$("#questionsContent").html($.template('questionsPanel_tpl',model));
+		    		
+		    		// integrate with knockout
+		    		// TODO: don't seem to need ko.observable or ko.observableArray right now
+		    		// this is because this is for if we want the view to auto-update based on model changes, but
+		    		// view is driven by controller and underscore template renderings right now
+		    		function MyQuestionsView () {
+		    			this.question = currentQuestion;
+		    		
+		    		};
+		    		
+		    		var myView = new MyQuestionsView();
+		    		
+		    		ko.applyBindings(myView);
+		    		
 		    
 		    };
 		    
