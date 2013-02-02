@@ -11,3 +11,6 @@ jqMobi MVC
 
 - "select" controls do not work on Android 2.2 -> Use another control for this
    (Need to find minimum version where they do work) - works on Ice Cream Sandwich (4.03) + 
+   
+Need to implement controls so that they respond to "onTap" instead of "onClick" - This explains the sluggishness of the UI response
+

@@ -24,7 +24,7 @@
 	<h4><%=question.choices.name %></h4><br/>
 		<% for(var i = 0; i < question.choices.value.length; ++i) { %>
 			<p>
-				<input type="checkbox" class="jq-ui-forms" value="<%=question.choices.value[i]%>"/>
+				<input name="questionValue" type="checkbox" class="jq-ui-forms" value="<%=question.choices.value[i]%>"/>
 				<label for="<%=question.choices.value[i]%>"><%=question.choices.value[i]%></label>
 			</p>
 		<% } %>	
