@@ -95,7 +95,15 @@ var navigationController = (function() {
 		    	// TODO: read the question data, update model, and save
 		    	
 		    	question.save(function(savedQuestion) {
+		    	
 		    		// TODO:
+		    		var message = "id:" + savedQuestion.questionId + "value=";
+		    		
+		    		for(var i = 0; i < savedQuestion.value.length; ++i) {
+		    			message += savedQuestion.value[i] + ",";
+		    		}
+		    		
+		    		console.log(message);
 		    	});
 		    	
 		    	return true;
