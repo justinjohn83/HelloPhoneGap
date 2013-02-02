@@ -146,4 +146,12 @@ app.createQuestionIdMap = function(resultList) {
 
 };
 
+app.clone = function(question) {
+	var serialized = JSON.stringify(question);
+	var duplicated = JSON.parse(serialized);
+	
+	return duplicated;
+
+};
+
 

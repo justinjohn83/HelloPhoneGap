@@ -3,7 +3,8 @@ var navigationController = (function() {
 		var that = {};
 		
 			var questionsModel = null;
-		
+			// FIXME: this will go into the storage adapter to detect if object has changed
+			var origCurrentQuestion = null;
 		// Must give full paths
 			that.views = {
 					"homePanel_tpl":"js/template/views/homePanel.tpl",
@@ -97,18 +98,24 @@ var navigationController = (function() {
 		    	*/
 		    	
 		    	// TODO: read the question data, update model, and save
+		    	// FIXME: this will be determined by storage adapter in future
+		    	if(!_.isEqual(origCurrentQuestion.value,question.value)) {
 		    	
-		    	question.save(function(savedQuestion) {
-		    	
-		    		// TODO:
-		    		var message = "id:" + savedQuestion.questionId + "value=";
+		    		console.log("Saving updates to question");
 		    		
-		    		for(var i = 0; i < savedQuestion.value.length; ++i) {
-		    			message += savedQuestion.value[i] + ",";
-		    		}
-		    		
-		    		console.log(message);
-		    	});
+			    	question.save(function(savedQuestion) {
+			    	
+	
+			    		var message = "id:" + savedQuestion.questionId + "value=";
+			    		
+			    		for(var i = 0; i < savedQuestion.value.length; ++i) {
+			    			message += savedQuestion.value[i] + ",";
+			    		}
+			    		
+			    		console.log(message);
+			    		
+			    	});
+			    }
 		    	
 		    	return true;
 		    };
@@ -122,6 +129,11 @@ var navigationController = (function() {
 		    			index = parseInt(index);
 		    		}	
 		    		var currentQuestion = questionsModel[index];
+		    		
+		    		// note copy of previous current question
+		    		// Deep copy
+					//var newObject = jQuery.extend(true, {}, oldObject);
+					origCurrentQuestion = app.clone(currentQuestion);
 		    		
 		    		var linkValue;
 		    		var linkText;
