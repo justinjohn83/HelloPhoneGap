@@ -83,8 +83,6 @@ var loadDefaultQuestions = function() {
 		
 		questions[q.questionId] = q;
 		
-		// TODO: use a collections framework - we are mimicking map functionality here
-		questions.length = id;
 		
 		return questions;
 };
@@ -126,7 +124,6 @@ app.loadQuestions = function(persistedList) {
 		mergedMap = defaultQuestions;
 	}
 	
-	mergedMap.length = defaultQuestions.length;
 	
 	return mergedMap;
 
@@ -135,18 +132,15 @@ app.loadQuestions = function(persistedList) {
 app.createQuestionIdMap = function(resultList) {
 	var map = {};
 	
-	var count = 0;
 	if(resultList) {
 		for(var i  = 0; i < resultList.length; ++i) {
 			var result = resultList[i];
 			if(result.questionId) {
 				map[result.questionId] = result;
-				++count;
 			}
 		}
 		
 	}
-	map.length = count;
 	
 	return map;
 

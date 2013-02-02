@@ -123,7 +123,9 @@ var navigationController = (function() {
 		    		var linkText;
 		    		var isRoute;
 		    		
-		    		if(index < questionsModel.length - 1) {
+		    		var modelSize = _.size(questionsModel);
+		    		
+		    		if(index < modelSize - 1) {
 		    			linkValue = 'navigation/questions/' + (index + 1);
 		    			linkText = 'Next';
 		    			isRoute = true;
