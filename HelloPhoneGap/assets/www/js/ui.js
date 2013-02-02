@@ -7,6 +7,9 @@ var app = app || {};
 
 $(document).ready(function() {
 
+    // apply fast click
+    new FastClick(document.body);
+    
 	app.mvc = new $.mvc.app();
 	// app not respecting base dir - this is a bug!
 	//app.mvc.setBaseDir("js/template/");
