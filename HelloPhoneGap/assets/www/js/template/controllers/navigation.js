@@ -97,6 +97,17 @@ var navigationController = (function() {
 		    	}
 		    	*/
 		    	
+		    	// TODO: DEBUG
+		    		var message = "Completed Question: id=" + question.questionId + "value=";
+			    		
+		    		for(var i = 0; i < question.value.length; ++i) {
+		    			message += question.value[i] + ",";
+		    		}
+			    		
+			    	console.log(message);
+			    	
+			    	// TODO: END DEBUG
+			    		
 		    	// TODO: read the question data, update model, and save
 		    	// FIXME: this will be determined by storage adapter in future
 		    	if(!_.isEqual(origCurrentQuestion.value,question.value)) {
@@ -106,7 +117,7 @@ var navigationController = (function() {
 			    	question.save(function(savedQuestion) {
 			    	
 	
-			    		var message = "id:" + savedQuestion.questionId + "value=";
+			    		var message = "questionSaved: id=" + savedQuestion.questionId + "value=";
 			    		
 			    		for(var i = 0; i < savedQuestion.value.length; ++i) {
 			    			message += savedQuestion.value[i] + ",";
@@ -120,6 +131,21 @@ var navigationController = (function() {
 		    	return true;
 		    };
 		    
+		    var doPlatformFixes = function(question) {
+		    
+		       if(typeof(device) !== "undefined") {
+		    
+			    	// Android select bug on Android < 4.0
+			    	if(question.questionType === app.questionType.Combo
+			    		 && device.platform === 'Android'
+			    		 && parseFloat(device.version) < 4) {
+			    		// convert to radio buttons
+			    		question.questionType = app.questionType.Radio;
+			    	
+			    	}
+		    	}
+		    
+		    };
 		    var renderQuestionView = function(index) {
 		    
 		    		if(typeof index === 'undefined') {
@@ -129,6 +155,8 @@ var navigationController = (function() {
 		    			index = parseInt(index);
 		    		}	
 		    		var currentQuestion = questionsModel[index];
+		    		
+		    		doPlatformFixes(currentQuestion);
 		    		
 		    		// note copy of previous current question
 		    		// Deep copy

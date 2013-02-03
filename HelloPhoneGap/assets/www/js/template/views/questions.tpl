@@ -40,7 +40,7 @@
 		 %>			<p>
 		 
 					<input type="radio" name="questionValue" checked class="jq-ui-forms" value="<%=val%>"
-						data-bind="checked: question.value[0]"/>
+						data-bind="checked: question.value"/>
 				
 				<label for="<%=val%>"><%=val%></label>
 			</p>
